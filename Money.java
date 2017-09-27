@@ -1,0 +1,35 @@
+import javafx.application.Application;
+import javafx.scene.control.TextInputDialog;
+import javafx.stage.Stage;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import java.util.Optional;
+
+
+public class Money extends Application {
+    public void start(Stage primaryStage) {
+
+        final int quarters = 25;
+        final int dimes = 10;
+        final int nickles = 5;
+        final int pennies = 1;
+
+        TextInputDialog iAmount = new TextInputDialog();
+        iAmount.setTitle("Enter Input");
+        iAmount.setHeaderText("Dollars to Change Converter");
+        iAmount.setContentText("Enter the amount you want by either 1, 5 ,or 10 dollars.");
+        Optional<String> value = iAmount.showAndWait();
+        String amount = value.get();
+
+        int qAmount = Integer.parseInt(amount)*100 / quarters;
+        int dAmount = Integer.parseInt(amount)*100 / dimes;
+        int nAmount = Integer.parseInt(amount)*100 / nickles;
+        int pAmount = Integer.parseInt(amount)*100 / pennies;
+
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Amount In Change");
+        alert.setContentText("Your change in quarters: " + qAmount + "\n Your change in dimes: " + dAmount + "\n Your change in nickles: " + nAmount + "\n Your change in pennies: " + pAmount);
+        alert.showAndWait();
+
+    }
+}
